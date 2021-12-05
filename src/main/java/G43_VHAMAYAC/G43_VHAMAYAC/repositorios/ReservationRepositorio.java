@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class ReservationRepositorio<res> extends RepositorioGenericoAbstracto<Reservation,Long>{
+public class ReservationRepositorio<res> extends RepositorioGenericoAbstracto<Reservation,Long> {
 
     @Autowired
     private ReservationInterface anInterface;
@@ -23,27 +23,26 @@ public class ReservationRepositorio<res> extends RepositorioGenericoAbstracto<Re
         return anInterface;
     }
 
-    public List<Reservation> getReservationByStatus(String status){
+    public List<Reservation> getReservationByStatus(String status) {
         return anInterface.findAllByStatus(status);
     }
 
-    public List<Reservation> getReservationPeriod(Date dateOne, Date dateTwo){
+    public List<Reservation> getReservationPeriod(Date dateOne, Date dateTwo) {
         return anInterface.findAllByStartDateAfterAndStartDateBefore(dateOne, dateTwo);
     }
 
-    public List<CountClient> getTopClient(){
-        List<CountClient> res=new ArrayList<>();
+    public List<CountClient> getTopClient() {
+        List<CountClient> res = new ArrayList<>();
 
-        List<Object[]> report=anInterface.countReservationByClient();
+        List<Object[]> report = anInterface.countTotalReservationByClient();
+
         for(int i=0;i<report.size();i++){
             Client cli = (Client) report.get(i)[0];
             Long cantidad=(Long) report.get(i)[1];
             CountClient cc = new CountClient(cantidad, cli);
             res.add(cc);
-            }
-
-        return res;
+        }
+        
+            return res;
     }
-
-
 }

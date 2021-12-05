@@ -18,14 +18,11 @@ public class Client {
     private String password;
     private String name;
     private Long age;
-
-    @OneToMany(mappedBy = "idMessage", cascade = CascadeType.PERSIST)
-    @JsonIgnoreProperties({"client", "lib", "category"})
-    List<Message> messages;
-
-
-    @OneToMany(mappedBy = "idReservation", cascade = CascadeType.PERSIST)
-    @JsonIgnoreProperties({"client", "lib"})
-    List<Reservation> reservations;
-
+    @OneToMany(cascade={CascadeType.PERSIST},mappedBy="client")
+    @JsonIgnoreProperties("client")
+    private List<Message> messages;
+    @OneToMany(cascade={CascadeType.PERSIST},mappedBy="client")
+    @JsonIgnoreProperties("client")
+    private List<Reservation> reservations;
+    
 }

@@ -25,16 +25,15 @@ public class Reservation {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "lib")
     @JsonIgnoreProperties({"reservations"})
     private Lib lib;
 
     @ManyToOne
-    @JoinColumn(name = "idClient")
+    @JoinColumn(name = "Client")
     @JsonIgnoreProperties({"messages", "reservations"})
     private Client client;
 
-    private String score;
 
 
 
