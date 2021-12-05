@@ -3,19 +3,22 @@ package G43_VHAMAYAC.G43_VHAMAYAC.modelo;
 import lombok.Data;
 import org.hibernate.service.spi.InjectService;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
-@Data
 @Entity
-@Table(name = "Admin")
-public class Admin {
+@Data
+public class Admin implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    @Column(length = 250)
+    private String nombre;
+    @Column(length = 45)
+    private String correo;
+    @Column(length = 45)
     private String password;
-    private String email;
 
 }

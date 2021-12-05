@@ -4,27 +4,26 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Data
 @Entity
-@Table(name = "messages")
-public class Message {
+@Data
+public class Message implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMessage;
     private String messageText;
-
+    //@OneToMany(cascade={CascadeType.PERSIST},mappedBy="messages")
     @ManyToOne
-    @JoinColumn(name = "id")
-    @JsonIgnoreProperties({"messages", "reservations"})
+    @JoinColumn(name="lib")
+    @JsonIgnoreProperties({"client","messages","reservations"})
     private Lib lib;
-
     @ManyToOne
-    @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties({"messages", "reservations"})
+    @JoinColumn(name="client")
+    @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
-
 
 
 

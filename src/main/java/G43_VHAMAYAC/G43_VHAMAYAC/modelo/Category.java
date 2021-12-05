@@ -2,25 +2,26 @@ package G43_VHAMAYAC.G43_VHAMAYAC.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.apache.tomcat.jni.Library;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-@Data
 @Entity
-@Table(name = "Category")
-public class Category {
+@Data
+public class Category implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 45)
     private String name;
+    @Column(length = 250)
     private String description;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
+    @OneToMany(cascade={CascadeType.PERSIST},mappedBy="category")
     @JsonIgnoreProperties("category")
-    List<Lib> Libs;
-
-
+    private List<Lib> Libs;
 
 }
