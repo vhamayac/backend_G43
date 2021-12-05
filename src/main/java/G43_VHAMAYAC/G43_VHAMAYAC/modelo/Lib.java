@@ -20,7 +20,7 @@ public class Lib {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "id", insertable=false, updatable=false)
+    @JoinColumn(name = "category")
     @JsonIgnoreProperties({"libs"})
     private Category category;
 
