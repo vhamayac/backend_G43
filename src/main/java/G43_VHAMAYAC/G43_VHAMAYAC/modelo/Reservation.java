@@ -22,7 +22,7 @@ public class Reservation {
     private Long idReservation;
     private Date startDate;
     private Date devolutionDate;
-    private String status = "created";
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "id")
